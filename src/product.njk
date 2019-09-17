@@ -1,0 +1,36 @@
+---
+layout: pages/start.njk
+tags:
+  - nav
+navtitle: Product
+title: Product
+---
+<div class="card card-product bg-dark text-white text-center mb-3">
+  <figure class="card-img" style="background-image: url(https://www.apple.com/v/home/en/images/heroes/iphone-11-pro/hero__dvsxv8smkkgi_large_2x.jpg);"></figure>
+  <div class="card-img-overlay pt-3 px-3 pt-md-5 px-md-5">
+    <h1 class="display-4 font-weight-normal">Punny headline</h1>
+    <h3 class="font-weight-normal">And an even wittier subheading to boot.</h3>
+    <p class="lead text-muted font-weight-normal">From $24.95/mo. or $599 with trade‑in.</p>
+    <a class="btn btn-lg btn-readmore stretched-link" href="#">Coming soon</a>
+  </div>
+</div>
+
+<div class="container-fluid">
+
+  <div class="row">
+      {% set cls = cycler("pr-md-2", "pl-md-2") %}
+      {% for product in collections.products | reverse %}
+        <div class="col-md-6 {{ cls.next() }} mb-3">
+          <div class="card card-product card-product-small bg-light text-center">
+            <figure class="card-img" style="background-image: url(https://www.apple.com/v/home/en/images/promos/apple-watch-studio/tile__cauwwcyyn9hy_large_2x.jpg); width: 1262px; height: 580px; background-size: 1262px 580px;"></figure>
+            <div class="card-img-overlay pt-3 px-3 pt-md-5 px-md-5">
+              <h2>{{ product.data.title | title }}</h2>
+              <p class="lead mb-1">{{ product.data.subtitle | capitalize }}</p>
+              <a class="btn btn-readmore stretched-link" href="{{ product.url }}">Coming soon</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+  </div><!-- END .row -->
+
+</div><!-- END .container-fluid -->

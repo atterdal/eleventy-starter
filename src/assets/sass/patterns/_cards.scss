@@ -1,0 +1,40 @@
+.card {
+    &-product {
+        height: 580px;
+        border: none;
+        border-radius: 0;
+        overflow: hidden;
+    }
+    &-img {
+        z-index: 1;
+        position: absolute;
+        border: 0;
+        margin: 0;
+        padding: 0;
+        left: calc(50% + 0px);
+        right: auto;
+        bottom: 0px;
+        top: auto;
+        transform: translatex(-50%);
+    
+    
+        width: 2560px;
+        height: 624px;
+        background-size: 2560px 624px;
+        background-repeat: no-repeat;
+      }
+      &-img-wrapper {
+        z-index: 1;
+        overflow: visible;
+        flex-grow: 1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+      }
+      &-img-overlay {
+          z-index: 2;
+          padding: 0;
+      }
+}

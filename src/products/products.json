@@ -1,0 +1,4 @@
+{
+    "tags": "products",
+    "permalink": "product/{{ title | slug }}/index.html"
+  } 

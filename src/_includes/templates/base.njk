@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="{{ siteData.lang }}" dir="ltr" class="no-js" data-layout-name="{{ layout | replace('pages/', '') | replace('.njk', '')  }}">
+
+  <head>
+    {# Document Settings #}
+    <meta charset="utf-8">
+    <script>
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js ';
+    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    {# Base Meta #}
+    <title>{{ renderData.title or title or metadata.title }}</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {# SEO Meta #}
+    <meta name="description" content="{{ renderData.description or description or metadata.description }}">
+    <meta name="og:title" property="og:title" content="{{ renderData.title or title or metadata.title }}">
+    <meta name="og:description" property="og:description" content="{{ renderData.description or description or metadata.description }}">
+    <meta name="og:url" property="og:url" content="{{ renderData.url or url or metadata.url }}">
+    <meta name="og:locale" property="og:locale" content="{{ siteData.lang | replace('-', '_') }}">
+    <meta name="og:image" property="og:image" content="{{ renderData.image or image or metadata.image }}">
+    <meta name="og:type" property="og:type" content="website">
+    <meta name="og:site_name" property="og:site_name" content="{{ siteData.name }}">
+
+    {# Styles'n'Scripts #}
+    <link rel="stylesheet" href="/assets/css/styles.css">
+
+  </head>
+
+  <body class="{{ body_class }}">
+
+    <div class="site-wrapper">
+
+    {% block header %}
+      {% include "templates/partials/header.njk" %}
+    {% endblock %}
+
+    <main class="main-content">
+    {% block content %}{{ content | safe }}{% endblock %}
+    </main>
+
+
+    {% block footer %}
+      {% include "templates/partials/footer.njk" %}
+    {% endblock %}
+
+    </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/app.min.js"></script>
+
+    {% block script %}{% endblock %}
+    
+  </body>
+</html>
