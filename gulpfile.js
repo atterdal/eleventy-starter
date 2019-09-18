@@ -18,6 +18,8 @@ var cleanCSS = require('gulp-clean-css');
 var gulpSequence = require('gulp-sequence');
 var replace = require('gulp-replace');
 var autoprefixer = require('autoprefixer');
+var srcset = require('gulp-srcset').default;
+ 
 
 // Configuration file to keep your code DRY
 var cfg = require('./gulpconfig.json');
@@ -74,13 +76,26 @@ gulp.task('imagemin', function() {
 		.pipe(gulp.dest(paths.img));
 });
 
+gulp.task('images', () =>
+    gulp
+        .src(`${paths.imgsrc}/**`)
+        .pipe(srcset([{
+            match:  '(min-width: 2000px)',
+            width:  [1920, 1280, 1024, 860, 540, 320],
+            format: ['jpg', 'webp']
+        }], {
+            skipOptimization: true
+        }))
+        .pipe(gulp.dest(paths.img))
+);
+
 /**
  * Ensures the 'imagemin' task is complete before reloading browsers
  * @verbose
  */
 gulp.task(
 	'imagemin-watch',
-	gulp.series('imagemin', function() {
+	gulp.series('images', function() {
 		browserSync.reload({stream: true});
 	})
 );
@@ -139,7 +154,8 @@ gulp.task('vendor', function () {
     var scripts = [
         `${paths.node}/jquery/dist/jquery.min.js`,
         `${paths.node}/popper.js/dist/umd/popper.min.js`,
-        `${paths.node}/bootstrap/dist/js/bootstrap.min.js`
+        `${paths.node}/bootstrap/dist/js/bootstrap.min.js`,
+        `${paths.node}/lazysizes/lazysizes.min.js`
 	];
     
 	return gulp
@@ -209,7 +225,7 @@ gulp.task('clean-dist', function() {
 // Run
 // gulp compile
 // Compiles the styles and scripts and runs the dist task
-gulp.task('compile', gulp.series('styles', 'scripts', 'vendor'));
+gulp.task('compile', gulp.series('styles', 'scripts', 'images', 'vendor'));
 
 // Run:
 // gulp

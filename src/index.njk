@@ -6,3 +6,14 @@ navtitle: Home
 title: Start
 ---
 <h1>This is global data: {{siteData.name}}</h1>
+{% for img in range(0,10) %}
+<!-- responsive example with automatic sizes calculation: -->
+<img
+    data-sizes="auto"
+    data-src="assets/img/image10@1920w.jpg"
+    data-srcset="assets/img/image10@320w.jpg 320w,
+    assets/img/image10@540w.jpg 540w,
+    assets/img/image10@860w.jpg 860w,
+    assets/img/image10@1280w.jpg 1280w,
+    assets/img/image10@1920w.jpg 1920w" class="lazyload" />
+{% endfor %}
