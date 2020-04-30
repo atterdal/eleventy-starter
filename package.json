@@ -42,7 +42,7 @@
     "gulp-srcset": "^2.3.1",
     "gulp-uglify": "^3.0.2",
     "gulp-watch": "^5.0.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lazysizes": "^5.1.1",
     "npm-run-all": "^4.1.5",
     "yall-js": "^3.1.5"
